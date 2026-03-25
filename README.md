@@ -1,5 +1,3 @@
-<img width="1919" height="963" alt="image" src="https://github.com/user-attachments/assets/ad698c51-8ccc-406e-8064-66b87cfb9125" /># Stellar XLM Transfer DApp
-
 Ứng dụng web cho phép chuyển XLM trên **Stellar Testnet** thông qua ví Freighter.
 
 ---
@@ -17,6 +15,10 @@
 🔗 [Xem contract trên StellarChain Explorer](https://stellarchain.io/contracts/CDH5AOFW6LNHJYR5QHZAIHKR4O3RE6HLZBPXU2VFSIHR7E6MLO6IORUE)
 
 ### Ảnh contract trên Stellar Explorer
+
+Link giao dịch mở trên Stellar Expert 
+
+https://stellar.expert/explorer/testnet/account/GCFJGNXVFCKSMM4S6JEZMJQFJQDSKRLL563DVSOHAPGAE3NNP3PUMIXA
 
 ![Smart Contract trên StellarChain Explorer](./contract_screenshot.png)
 
