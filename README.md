@@ -1,6 +1,12 @@
 Ứng dụng web cho phép chuyển XLM trên **Stellar Testnet** thông qua ví Freighter.
 
 ---
+## Development Standards
+
+- **UI Setup:** Xây dựng bằng HTML/CSS/JS thuần, sử dụng bố cục dạng thẻ (card-based layout) gọn gàng, chia rõ khu vực thao tác và khu vực hiển thị trạng thái giao dịch.
+- **Wallet Integration:** Sử dụng thư viện `@stellar/freighter-api` qua CDN để xử lý việc kết nối (`requestAccess`), lấy địa chỉ ví (`getPublicKey`) và ký giao dịch (`signTransaction`). Có nút để ngắt kết nối và reset giao diện.
+- **Balance Fetching:** Sử dụng `StellarSdk.Horizon.Server` kết nối tới Horizon Testnet, dùng hàm `loadAccount` để fetch `balances` và lọc lấy tài sản `native` (XLM) hiển thị trực tiếp lên UI.
+- **Transaction Logic & Error Handling:** Sử dụng `TransactionBuilder` để tạo `Operation.payment` gửi native XLM. Toàn bộ luồng được bọc trong khối `try/catch`. Lỗi từ chối ký ví hoặc lỗi do không đủ số dư đều được catch và in ra box "Kết quả giao dịch" với màu đỏ (Error state).
 
 ## Contract
 <img width="1919" height="963" alt="image" src="https://github.com/user-attachments/assets/9c24ac31-ce7c-4677-95e0-0f9b559c0be4" />
