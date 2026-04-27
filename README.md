@@ -6,17 +6,18 @@ Stellar Pay & Tokenize
 💡 Ý tưởng & Tầm nhìn (Project Ideas)
 Dự án không chỉ dừng lại ở một ứng dụng ví đơn giản mà hướng tới các giải pháp tài chính thực tiễn:
 
-Simple Payment dApp: Một ứng dụng thanh toán tinh gọn cho phép chuyển XLM (Native Asset) đến bất kỳ địa chỉ ví nào trên mạng Testnet với tốc độ giao dịch nhanh và phí cực thấp.
+-Simple Payment dApp: Một ứng dụng thanh toán tinh gọn cho phép chuyển XLM (Native Asset) đến bất kỳ địa chỉ ví nào trên mạng Testnet với tốc độ giao dịch nhanh và phí cực thấp.
 
-Token hóa tài sản (Asset Tokenization): Sử dụng Smart Contract (Soroban) để tạo ra các token tùy chỉnh. Ví dụ:
+-Token hóa tài sản (Asset Tokenization): Sử dụng Smart Contract (Soroban) để tạo ra các token tùy chỉnh. Ví dụ:
 
-Token hóa điểm thưởng: Chuyển đổi điểm tích lũy của khách hàng thành token trên blockchain để tăng tính thanh khoản và minh bạch.
+-Token hóa điểm thưởng: Chuyển đổi điểm tích lũy của khách hàng thành token trên blockchain để tăng tính thanh khoản và minh bạch.
 
-Hệ thống tín dụng nội bộ: Tạo ra các "Credit" để thanh toán trong các hệ thống đóng (như trường học hoặc doanh nghiệp).
+-Hệ thống tín dụng nội bộ: Tạo ra các "Credit" để thanh toán trong các hệ thống đóng (như trường học hoặc doanh nghiệp).
 
-Split Bill Calculator: Tích hợp tính năng chia hóa đơn tự động và gửi thanh toán trực tiếp từ UI đến danh sách người nhận.
+-Split Bill Calculator: Tích hợp tính năng chia hóa đơn tự động và gửi thanh toán trực tiếp từ UI đến danh sách người nhận.
 
 🚀 Tính năng chính
+
 🔌 Wallet Connection: Kết nối và ngắt kết nối an toàn với Freighter Wallet.
 
 💰 Real-time Balance: Tự động truy vấn và hiển thị số dư XLM (Native) ngay khi kết nối thành công.
