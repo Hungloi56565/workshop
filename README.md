@@ -1,5 +1,5 @@
-Stellar Pay & Tokenize - [Tên dự án của bạn]
-📝 Mô tả dự án
+Stellar Pay & Tokenize 
+**📝 Mô tả dự án
 Ứng dụng web phi tập trung (dApp) xây dựng trên mạng Stellar Testnet. Dự án tập trung vào việc xử lý các giao dịch XLM cơ bản và đặt nền móng cho việc quản lý tài sản số thông qua hợp đồng thông minh Soroban. Đây là bài nộp chính thức cho Level 1 - White Belt Submission.
 
 💡 Ý tưởng & Tầm nhìn (Project Ideas)
