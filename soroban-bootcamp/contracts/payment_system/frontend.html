@@ -220,7 +220,15 @@
       <span class="wallet-address" id="walletAddress">—</span>
     </div>
   </div>
-
+  <div class="status-row" style="margin-top: 10px;">
+      <span>Địa chỉ:</span>
+      <span class="wallet-address" id="walletAddress">—</span>
+    </div>
+    <div class="status-row" style="margin-top: 10px;">
+      <span>Số dư XLM:</span>
+      <span class="wallet-address" id="walletBalance">—</span>
+    </div>
+    <button id="disconnectBtn" style="margin-top: 15px; background: var(--error); width: 100%; display: none;">Ngắt kết nối</button>
   <div class="card">
     <h2>Kết quả giao dịch</h2>
     <div class="result-box" id="txResult">Chưa có giao dịch nào.</div>
@@ -329,6 +337,57 @@
     } finally {
       setLoading(false);
     }
+  });
+
+  // Thêm 2 dòng khai báo này ở đầu script cùng với các element khác
+  const walletBalanceEl = document.getElementById("walletBalance");
+  const disconnectBtn   = document.getElementById("disconnectBtn");
+
+  // CẬP NHẬT LẠI HÀM connectWallet CỦA BẠN THÀNH NHƯ SAU:
+  async function connectWallet() {
+    const api = window.freighterApi;
+    if (!api) { alert("Cài Freighter tại: https://www.freighter.app/"); return null; }
+
+    let connected;
+    try {
+      const res = await api.isConnected();
+      connected = (typeof res === "boolean") ? res : res.isConnected;
+    } catch(e) { alert("Lỗi Freighter: " + e.message); return null; }
+
+    if (!connected) { alert("Mở Freighter và đăng nhập trước."); return null; }
+    try { await api.requestAccess(); } catch(e) { alert("Từ chối kết nối: " + e.message); return null; }
+
+    let address;
+    try { address = await api.getPublicKey(); } catch(e) { alert("Không lấy được địa chỉ: " + e.message); return null; }
+    if (!address) { alert("Không lấy được địa chỉ ví."); return null; }
+
+    setConnected(address);
+
+    // BẮT ĐẦU ĐOẠN THÊM MỚI: Lấy số dư XLM
+    try {
+      const server = new StellarSdk.Horizon.Server(HORIZON_URL);
+      const account = await server.loadAccount(address);
+      const nativeBalance = account.balances.find(b => b.asset_type === 'native');
+      walletBalanceEl.textContent = nativeBalance ? `${nativeBalance.balance} XLM` : "0 XLM";
+    } catch (e) {
+      walletBalanceEl.textContent = "Không thể tải số dư";
+    }
+    
+    // Hiện nút ngắt kết nối
+    disconnectBtn.style.display = "block";
+    
+    return address;
+  }
+
+  // THÊM SỰ KIỆN NÀY ĐỂ XỬ LÝ NGẮT KẾT NỐI
+  disconnectBtn.addEventListener("click", () => {
+    walletAddrEl.textContent = "—";
+    walletBalanceEl.textContent = "—";
+    statusBadge.textContent = "Chưa kết nối";
+    statusBadge.className = "badge badge-disconnected";
+    connectBtn.textContent = "Kết nối Ví";
+    disconnectBtn.style.display = "none";
+    setResult("Đã ngắt kết nối ví.");
   });
 </script>
 

@@ -108,3 +108,57 @@ impl PaymentToken {
     pub fn symbol(env: Env) -> String { env.storage().instance().get(&DataKey::Symbol).unwrap() }
     pub fn total_supply(env: Env) -> i128 { env.storage().instance().get(&DataKey::TotalSupply).unwrap_or(0) }
 }
+
+#[cfg(test)]
+mod test {
+    use super::*;
+    use soroban_sdk::{testutils::Address as _, Env, String};
+
+    #[test]
+    fn test_initialize_and_mint() {
+        let env = Env::default();
+        env.mock_all_auths(); 
+        let contract_id = env.register_contract(None, PaymentToken);
+        let client = PaymentTokenClient::new(&env, &contract_id);
+        let admin = Address::generate(&env);
+        let user = Address::generate(&env);
+        client.initialize(&admin, &String::from_str(&env, "Token"), &String::from_str(&env, "TKN"));
+        
+        client.mint(&user, &1000);
+        assert_eq!(client.balance(&user), 1000);
+    }
+
+    #[test]
+    fn test_successful_transfer() {
+        let env = Env::default();
+        env.mock_all_auths();
+        let contract_id = env.register_contract(None, PaymentToken);
+        let client = PaymentTokenClient::new(&env, &contract_id);
+        let admin = Address::generate(&env);
+        let user1 = Address::generate(&env);
+        let user2 = Address::generate(&env);
+
+        client.initialize(&admin, &String::from_str(&env, "Token"), &String::from_str(&env, "TKN"));
+        client.mint(&user1, &500);
+        client.transfer(&user1, &user2, &200);
+
+        assert_eq!(client.balance(&user1), 300);
+        assert_eq!(client.balance(&user2), 200);
+    }
+
+    #[test]
+    #[should_panic(expected = "Error(Contract, #2)")] 
+    fn test_transfer_insufficient_balance() {
+        let env = Env::default();
+        env.mock_all_auths();
+        let contract_id = env.register_contract(None, PaymentToken);
+        let client = PaymentTokenClient::new(&env, &contract_id);
+        let admin = Address::generate(&env);
+        let user1 = Address::generate(&env);
+        let user2 = Address::generate(&env);
+
+        client.initialize(&admin, &String::from_str(&env, "Token"), &String::from_str(&env, "TKN"));
+        client.mint(&user1, &100);
+        client.transfer(&user1, &user2, &150); // Lỗi vì chuyển 150 nhưng chỉ có 100
+    }
+}
