@@ -71,6 +71,19 @@ https://stellar.expert/explorer/testnet/account/GCFJGNXVFCKSMM4S6JEZMJQFJQDSKRLL
 
 🔗 [Xem lịch sử giao dịch trên Stellar Expert](https://stellar.expert/explorer/testnet/account/GCFJGNXVFCKSMM4S6JEZMJQFJQDSKRLL563DVSOHAPGAE3NNP3PUMIXA)
 
+🧪 Kiểm thử (Testing)
+
+Hợp đồng thông minh trong lib.rs đã được kiểm thử với ít nhất 3 trường hợp quan trọng:
+
+-Initialize & Mint: Kiểm tra việc khởi tạo token và cấp phát số dư ban đầu cho người dùng.
+
+-Successful Transfer: Đảm bảo luồng chuyển token giữa hai địa chỉ diễn ra chính xác.
+
+-Insufficient Balance Error: Xác minh hệ thống bắt lỗi và ngăn chặn giao dịch khi người gửi không đủ số dư.
+
+
+![Uploading Ảnh chụp màn hình 2026-04-27 210928.png…]()
+
 ---
 
 ## Cách dùng
